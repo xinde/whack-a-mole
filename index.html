@@ -12,63 +12,72 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 10px;
             overflow-x: hidden;
         }
 
         h1 {
             color: #fff;
-            font-size: clamp(1.8rem, 6vw, 3rem);
-            margin-bottom: 15px;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 8px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
             text-align: center;
+            flex-shrink: 0;
         }
 
         .score-board {
             background: rgba(255,255,255,0.95);
-            padding: 15px 30px;
-            border-radius: 20px;
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            margin-bottom: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 8px 20px;
+            border-radius: 15px;
+            font-size: clamp(1rem, 3.5vw, 1.6rem);
+            margin-bottom: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            flex-shrink: 0;
         }
 
         .score-board span {
             color: #ff6b6b;
             font-weight: bold;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-size: clamp(1.3rem, 4vw, 2rem);
         }
 
         .game-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: clamp(8px, 3vw, 20px);
+            gap: clamp(6px, 2vw, 15px);
             background: rgba(255,255,255,0.9);
-            padding: clamp(15px, 4vw, 30px);
-            border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            max-width: 100%;
-            width: fit-content;
+            padding: clamp(12px, 3vw, 25px);
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 500px;
+            flex-shrink: 0;
         }
 
         .hole {
-            width: clamp(70px, 22vw, 150px);
-            height: clamp(70px, 22vw, 150px);
+            aspect-ratio: 1;
+            width: 100%;
             background: radial-gradient(ellipse at center, #4a2c2a 0%, #2d1810 100%);
             border-radius: 50%;
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            border: clamp(4px, 1.5vw, 8px) solid #8b5a2b;
-            box-shadow: inset 0 15px 25px rgba(0,0,0,0.5);
+            border: clamp(4px, 1.2vw, 7px) solid #8b5a2b;
+            box-shadow: inset 0 12px 20px rgba(0,0,0,0.5);
             transition: transform 0.1s;
             touch-action: manipulation;
         }
@@ -78,19 +87,18 @@
         }
 
         .mole {
-            width: clamp(50px, 15vw, 100px);
-            height: clamp(50px, 15vw, 100px);
+            width: 80%;
+            height: 80%;
             position: absolute;
-            bottom: -120px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: -100%;
+            left: 10%;
             transition: bottom 0.2s ease-out;
             pointer-events: none;
         }
 
         .mole::before {
             content: "🐹";
-            font-size: clamp(40px, 12vw, 80px);
+            font-size: clamp(35px, 10vw, 70px);
             position: absolute;
             bottom: 0;
             left: 50%;
@@ -98,7 +106,7 @@
         }
 
         .hole.up .mole {
-            bottom: 10px;
+            bottom: 5%;
         }
 
         .hit-effect {
@@ -106,10 +114,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: clamp(3rem, 10vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: bold;
             color: #ffd700;
-            text-shadow: 4px 4px 0 #ff6b6b, 8px 8px 0 rgba(0,0,0,0.3);
+            text-shadow: 3px 3px 0 #ff6b6b, 6px 6px 0 rgba(0,0,0,0.3);
             animation: hitPop 0.5s ease-out;
             z-index: 100;
             pointer-events: none;
@@ -130,24 +138,32 @@
             }
         }
 
+        .btn-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-shrink: 0;
+        }
+
         .start-btn {
-            margin-top: 20px;
-            padding: clamp(15px, 4vw, 20px) clamp(30px, 8vw, 60px);
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            padding: 12px 40px;
+            font-size: clamp(1.1rem, 3.5vw, 1.6rem);
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
             color: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(238,90,36,0.4);
+            box-shadow: 0 6px 20px rgba(238,90,36,0.4);
             transition: all 0.3s;
             font-weight: bold;
             -webkit-tap-highlight-color: transparent;
         }
 
         .start-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(238,90,36,0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(238,90,36,0.5);
         }
 
         .start-btn:active {
@@ -155,22 +171,21 @@
         }
 
         .start-btn:disabled {
-            background: #ccc;
+            background: #999;
             cursor: not-allowed;
             transform: none;
         }
 
         .time-left {
             color: #fff;
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            margin-top: 10px;
+            font-size: clamp(0.9rem, 2.5vw, 1.3rem);
             text-align: center;
         }
 
         /* 星星特效 */
         .star {
             position: fixed;
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             pointer-events: none;
             animation: starFly 1s ease-out forwards;
             z-index: 99;
@@ -190,10 +205,10 @@
         /* 鼓励文字 */
         .encourage {
             position: fixed;
-            top: 20%;
+            top: 15%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             font-weight: bold;
             color: #fff;
             text-shadow: 3px 3px 0 #ff6b6b;
@@ -222,32 +237,6 @@
             }
         }
 
-        /* 移动端优化 */
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
-            .game-container {
-                gap: 8px;
-                padding: 15px;
-            }
-            
-            .hole {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .mole {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .mole::before {
-                font-size: 40px;
-            }
-        }
-
         /* 禁止选中文本 */
         * {
             -webkit-user-select: none;
@@ -258,7 +247,7 @@
     </style>
 </head>
 <body>
-    <h1>🎯 打地鼠游戏</h1>
+    <h1>🎯 打地鼠</h1>
     
     <div class="score-board">
         得分: <span id="score">0</span>
@@ -276,19 +265,16 @@
         <div class="hole" data-index="8"><div class="mole"></div></div>
     </div>
 
-    <button class="start-btn" id="startBtn" onclick="startGame()">开始游戏</button>
-    
-    <div class="time-left" id="timeLeft"></div>
-
-    <!-- 音效元素 -->
-    <audio id="popSound" src="data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU" preload="auto"></audio>
-    <audio id="hitSound" src="data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU" preload="auto"></audio>
+    <div class="btn-row">
+        <button class="start-btn" id="startBtn" onclick="startGame()">开始</button>
+        <div class="time-left" id="timeLeft"></div>
+    </div>
 
     <script>
         // Web Audio API 生成音效
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
-        // 生成地鼠出现音效（短的"砰"声）
+        // 生成地鼠出现音效
         function playPopSound() {
             try {
                 const oscillator = audioCtx.createOscillator();
@@ -305,12 +291,10 @@
                 
                 oscillator.start(audioCtx.currentTime);
                 oscillator.stop(audioCtx.currentTime + 0.15);
-            } catch(e) {
-                console.log('Audio error:', e);
-            }
+            } catch(e) {}
         }
         
-        // 生成击中音效（更响亮的打击声）
+        // 生成击中音效
         function playHitSound() {
             try {
                 const oscillator = audioCtx.createOscillator();
@@ -329,7 +313,6 @@
                 oscillator.start(audioCtx.currentTime);
                 oscillator.stop(audioCtx.currentTime + 0.2);
                 
-                // 添加第二层音效
                 const osc2 = audioCtx.createOscillator();
                 const gain2 = audioCtx.createGain();
                 osc2.connect(gain2);
@@ -341,9 +324,7 @@
                 gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
                 osc2.start(audioCtx.currentTime);
                 osc2.stop(audioCtx.currentTime + 0.1);
-            } catch(e) {
-                console.log('Audio error:', e);
-            }
+            } catch(e) {}
         }
 
         const holes = document.querySelectorAll('.hole');
@@ -357,17 +338,7 @@
         let gameTime = 30;
         let timer;
 
-        // 鼓励语录
-        const encourages = [
-            "太棒了！🌟",
-            "好样的！👍",
-            "厉害！🎉",
-            "真聪明！💪",
-            "棒棒的！✨",
-            "满分！🏆",
-            "超级棒！👏",
-            "高手！🎯"
-        ];
+        const encourages = ["太棒了！🌟", "好样的！👍", "厉害！🎉", "真聪明！💪", "棒棒的！✨"];
 
         function randomTime(min, max) {
             return Math.round(Math.random() * (max - min) + min);
@@ -376,9 +347,7 @@
         function randomHole(holes) {
             const idx = Math.floor(Math.random() * holes.length);
             const hole = holes[idx];
-            if (hole === lastHole) {
-                return randomHole(holes);
-            }
+            if (hole === lastHole) return randomHole(holes);
             lastHole = hole;
             return hole;
         }
@@ -387,8 +356,6 @@
             const time = randomTime(500, 1200);
             const hole = randomHole(holes);
             hole.classList.add('up');
-            
-            // 播放出现音效
             playPopSound();
             
             setTimeout(() => {
@@ -398,7 +365,6 @@
         }
 
         function startGame() {
-            // 激活音频上下文（移动端需要用户交互）
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
@@ -408,20 +374,19 @@
             gameTime = 30;
             scoreDisplay.textContent = score;
             startBtn.disabled = true;
-            startBtn.textContent = "游戏中...";
+            startBtn.textContent = "游戏中";
             
             peep();
             
-            // 倒计时
             timer = setInterval(() => {
                 gameTime--;
-                timeLeftDisplay.textContent = `剩余时间: ${gameTime} 秒`;
+                timeLeftDisplay.textContent = `${gameTime}秒`;
                 if (gameTime <= 0) {
                     clearInterval(timer);
                     timeUp = true;
                     startBtn.disabled = false;
-                    startBtn.textContent = "再来一局";
-                    timeLeftDisplay.textContent = "游戏结束！";
+                    startBtn.textContent = "再来";
+                    timeLeftDisplay.textContent = "结束!";
                     showResult();
                 }
             }, 1000);
@@ -429,18 +394,14 @@
 
         function whack(e) {
             if(!e.isTrusted) return;
-            
             const hole = this;
             if (!hole.classList.contains('up')) return;
             
-            // 播放击中音效
             playHitSound();
-            
             score++;
             hole.classList.remove('up');
             scoreDisplay.textContent = score;
             
-            // 获取点击坐标
             let x, y;
             if (e.touches && e.touches.length > 0) {
                 x = e.touches[0].clientX;
@@ -450,13 +411,8 @@
                 y = e.clientY;
             }
             
-            // 显示打击特效
             showHitEffect(x, y);
-            
-            // 显示鼓励语
             showEncourage();
-            
-            // 星星特效
             createStars(x, y);
         }
 
@@ -467,7 +423,6 @@
             effect.style.left = x + 'px';
             effect.style.top = y + 'px';
             document.body.appendChild(effect);
-            
             setTimeout(() => effect.remove(), 500);
         }
 
@@ -476,7 +431,6 @@
             encourage.className = 'encourage';
             encourage.textContent = encourages[Math.floor(Math.random() * encourages.length)];
             document.body.appendChild(encourage);
-            
             setTimeout(() => encourage.remove(), 1000);
         }
 
@@ -489,14 +443,13 @@
                 star.style.top = y + 'px';
                 
                 const angle = (i / 6) * Math.PI * 2;
-                const distance = 50 + Math.random() * 50;
+                const distance = 40 + Math.random() * 40;
                 const tx = Math.cos(angle) * distance;
                 const ty = Math.sin(angle) * distance;
                 star.style.setProperty('--tx', tx + 'px');
                 star.style.setProperty('--ty', ty + 'px');
                 
                 document.body.appendChild(star);
-                
                 setTimeout(() => star.remove(), 1000);
             }
         }
@@ -505,22 +458,15 @@
             const result = document.createElement('div');
             result.className = 'encourage';
             let message;
-            if (score >= 30) {
-                message = "超级高手！🏆";
-            } else if (score >= 20) {
-                message = "太厉害了！🌟";
-            } else if (score >= 10) {
-                message = "很不错！👍";
-            } else {
-                message = "再接再厉！💪";
-            }
-            result.textContent = `得分: ${score} - ${message}`;
+            if (score >= 30) message = "超级高手！🏆";
+            else if (score >= 20) message = "太厉害了！🌟";
+            else if (score >= 10) message = "很不错！👍";
+            else message = "再接再厉！💪";
+            result.textContent = `${score}分 - ${message}`;
             document.body.appendChild(result);
-            
             setTimeout(() => result.remove(), 2000);
         }
 
-        // 绑定点击事件
         holes.forEach(hole => {
             hole.addEventListener('click', whack);
             hole.addEventListener('touchstart', whack, { passive: true });
